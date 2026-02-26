@@ -5,9 +5,9 @@ from google import genai
 from google.genai import types
 
 def test_gemini_connection():
-    \"\"\"
+    """
     Minimal handshake script to verify the Gemini API connection.
-    \"\"\"
+    """
     # 1. Load environment variables
     load_dotenv()
     api_key = os.getenv("GEMINI_API_KEY")
