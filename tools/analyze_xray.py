@@ -50,7 +50,13 @@ def run_visident_analysis(image_filename):
 
     try:
         # Load image file
-        img_full_path = os.path.join(root_dir, image_filename)
+        # If Streamlit gives us an absolute path (saving in tmp_uploads), use it directly.
+        # Otherwise, assume it's relative to root_dir.
+        if os.path.isabs(image_filename):
+            img_full_path = image_filename
+        else:
+            img_full_path = os.path.join(root_dir, image_filename)
+            
         if not os.path.exists(img_full_path):
             print(f"❌ Error: Image not found at {img_full_path}")
             return
