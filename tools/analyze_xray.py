@@ -10,7 +10,8 @@ def run_visident_analysis(image_filename):
     root_dir = os.path.dirname(current_dir)
     dotenv_path = os.path.join(root_dir, '.env')
     
-    load_dotenv(dotenv_path)
+    if os.path.exists(dotenv_path):
+        load_dotenv(dotenv_path)
     api_key = os.getenv("GOOGLE_API_KEY")
     
     # NEW logic: If not in .env, check Streamlit Secrets (for Cloud Deployment)
