@@ -32,7 +32,7 @@ with col1:
     if uploaded_file is not None:
         # Display the uploaded image
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Radiograph", use_container_width=True)
+        st.image(image, caption="Uploaded Radiograph", width="stretch")
         
         # Save temp file for the analyzer script
         temp_file_path = os.path.join(TMP_DIR, uploaded_file.name)
@@ -45,7 +45,7 @@ with col2:
     st.subheader("2. AI Analysis Output")
     
     if uploaded_file is not None:
-        if st.button("Run Layered Analysis", type="primary", use_container_width=True):
+        if st.button("Run Layered Analysis", type="primary", width="stretch"):
             with st.spinner("Executing Architecture SOPs (Validation ➡️ Review ➡️ Risk Flagging)..."):
                 try:
                     # Run the Muscle script, passing the absolute path to our temp file
