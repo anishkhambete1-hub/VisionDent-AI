@@ -13,10 +13,17 @@ def run_visident_analysis(image_filename):
     load_dotenv(dotenv_path)
     api_key = os.getenv("GOOGLE_API_KEY")
     
+    # NEW logic: If not in .env, check Streamlit Secrets (for Cloud Deployment)
     if not api_key:
-        print(f"❌ Error: API Key not detected in {dotenv_path}")
-        return
+        try:
+            import streamlit as st
+            api_key = st.secrets.get("GOOGLE_API_KEY")
+        except Exception:
+            pass
 
+    if not api_key:
+        print(f"❌ Error: API Key not detected in {dotenv_path} or Streamlit Secrets.")
+        return
     # 2. INITIALIZE (The Handshake Logic)
     genai.configure(api_key=api_key)
 
