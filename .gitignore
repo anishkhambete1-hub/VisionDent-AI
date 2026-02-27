@@ -1,2 +1,33 @@
-requirements.txt
-requirements.txt
+# 1. Python Environment & Cache
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# 2. API Keys & Secrets
+.env
+
+# 3. Project Temporary Data & Uploads
+tmp_uploads/
+*.jpg
+*.jpeg
+*.png
+
+# 4. OS Generated Files (macOS/Windows)
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 5. Streamlit Local Configurations
+.streamlit/secrets.toml
+
+# 6. IDEs & Terminal History
+.vscode/
+.idea/
+*.history
+.python_history

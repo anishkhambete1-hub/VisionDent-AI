@@ -10,10 +10,10 @@ def test_gemini_connection():
     """
     # 1. Load environment variables
     load_dotenv()
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     
     if not api_key or api_key == "your_google_gemini_api_key_here":
-        print("❌ Error: GEMINI_API_KEY not found or not set in .env file.")
+        print("❌ Error: GOOGLE_API_KEY not found or not set in .env file.")
         print("Please update the .env file with your actual API key.")
         sys.exit(1)
 

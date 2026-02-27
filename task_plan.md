@@ -5,18 +5,18 @@
 - [x] Define Data Schema
 - [x] Initial Research
 
-## Phase 2: Link (Pending)
-- [ ] Test API Connections
-- [ ] Build Handshake Scripts
+## Phase 2: Link (Completed)
+- [x] Test API Connections
+- [x] Build Handshake Scripts
 
-## Phase 3: Architect (Pending)
-- [ ] Define Architecture SOPs
+## Phase 3: Architect (Completed)
+- [x] Define Architecture SOPs
 
-## Phase 4: Stylize (Pending)
-- [ ] Refine Payload
-- [ ] Finalize UX/UI
+## Phase 4: Stylize (Completed)
+- [x] Refine Payload
+- [x] Finalize UX/UI (Streamlit `app.py`)
 
-## Phase 5: Trigger (Pending)
-- [ ] Deployment
-- [ ] Triggers
-- [ ] Maintenance Log
+## Phase 5: Trigger (Completed)
+- [x] Deployment (`run.sh` & Remote strategy)
+- [x] Triggers (Streamlit CLI)
+- [x] Maintenance Log (`maintenance.md`)
