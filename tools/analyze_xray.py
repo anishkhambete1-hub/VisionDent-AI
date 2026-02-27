@@ -23,8 +23,8 @@ def run_visident_analysis(image_filename):
             pass
 
     if not api_key:
-        print(f"❌ Error: API Key not detected in {dotenv_path} or Streamlit Secrets.")
-        return
+        raise ValueError(f"API Key not detected in {dotenv_path} or Streamlit Secrets.")
+
     # 2. INITIALIZE (The Handshake Logic)
     genai.configure(api_key=api_key)
 
@@ -35,8 +35,7 @@ def run_visident_analysis(image_filename):
         with open(os.path.join(root_dir, 'architecture', 'radiology_sop.md'), 'r') as f:
             sop = f.read()
     except FileNotFoundError as e:
-        print(f"❌ Error: L1 Files (SOP or gemini.md) missing. {e}")
-        return
+        raise FileNotFoundError(f"L1 Files (SOP or gemini.md) missing. {e}")
 
     # 4. LAYER 3: TOOL (The Vision Logic)
     print(f"🔍 VisiDent-AI: Analyzing {image_filename}...")
@@ -66,8 +65,7 @@ def run_visident_analysis(image_filename):
             img_full_path = os.path.join(root_dir, image_filename)
             
         if not os.path.exists(img_full_path):
-            print(f"❌ Error: Image not found at {img_full_path}")
-            return
+            raise FileNotFoundError(f"Image not found at {img_full_path}")
 
         # Upload and Generate
         # (Using the helper to wrap the file path)
@@ -89,7 +87,7 @@ def run_visident_analysis(image_filename):
         return payload
 
     except Exception as e:
-        print(f"❌ Analysis failed: {str(e)}")
+        raise RuntimeError(f"Analysis failed: {str(e)}")
 
 if __name__ == "__main__":
     # Ensure test_xray.jpg is in your MAIN project folder
