@@ -98,3 +98,5 @@ with col2:
                         os.remove(temp_file_path)
     else:
         st.write("Upload an image on the left to begin analysis.")
+
+

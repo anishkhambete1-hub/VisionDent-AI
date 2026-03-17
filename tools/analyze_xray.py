@@ -40,7 +40,7 @@ def run_visident_analysis(image_filename):
     # 4. LAYER 3: TOOL (The Vision Logic)
     print(f"🔍 VisiDent-AI: Analyzing {image_filename}...")
     
-    # We use 1.5 Flash - it's fast and reliable for vision
+   
     model = genai.GenerativeModel('gemini-3-flash-preview')
 
     prompt = f"""
@@ -49,6 +49,15 @@ def run_visident_analysis(image_filename):
 
     STANDARD OPERATING PROCEDURE:
     {sop}
+
+    STRICT OPERATING RULES (CLINICAL GUARDRAILS):
+    1. Image Verification: Before analysis, verify the image is a valid dental radiograph (periapical, bitewing, or panoramic). If the image is NOT a dental radiograph, or if it is too blurry/distorted to be diagnostic, you must output a JSON object with a single key: {{"error": "ERROR: Image is non-diagnostic or invalid."}} and terminate the response. Do not guess.
+    
+    2. Clinical Standardization: You must strictly use the FDI World Dental Federation two-digit notation for all tooth references. Do not use conversational language. Frame all findings as "potential areas of interest" rather than definitive diagnoses (e.g., use "Potential radiolucency on distal of 46" instead of "Cavity on 46").
+    
+    3. Output Structure: You must format your response strictly as a valid JSON object matching the required UI payload. Group the findings in a "findings" array containing objects with "tooth_number", "category", and "observation" keys. Do not write plain text bulleted lists, and do not write introductory or concluding paragraphs.
+    
+    4. Mandatory Disclaimer: You must include a key in your final JSON object called "disclaimer" with this exact value: "Disclaimer: These AI-generated findings are for assistive purposes only. They do not constitute a definitive medical diagnosis and require clinical correlation and tactile verification by a licensed practitioner."
 
     INSTRUCTION:
     Analyze the attached image strictly following the SOP. 
